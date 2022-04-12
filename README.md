@@ -1,6 +1,6 @@
 # Game library
 Game library (no catchy name yet) is an application to keep track of one's board game library.
-The user can search for available boardgames and add them to collections to organise them.
+The user can search for available board games and add them to collections to organise them.
 
 # Technical stack
 ## Front-end
