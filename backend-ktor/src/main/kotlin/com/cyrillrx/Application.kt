@@ -1,12 +1,15 @@
 package com.cyrillrx
 
-import io.ktor.server.engine.*
+import com.cyrillrx.plugins.configureRouting
+import com.cyrillrx.plugins.configureSerialization
+import com.cyrillrx.plugins.initDB
+import io.ktor.server.application.*
 import io.ktor.server.netty.*
-import com.cyrillrx.plugins.*
 
-fun main() {
-    embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
-        configureRouting()
-        configureSerialization()
-    }.start(wait = true)
+fun main(args: Array<String>): Unit = EngineMain.main(args)
+
+fun Application.module() {
+    initDB()
+    configureRouting()
+    configureSerialization()
 }
