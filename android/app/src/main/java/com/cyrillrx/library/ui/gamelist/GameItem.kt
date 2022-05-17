@@ -1,4 +1,4 @@
-package com.cyrillrx.library.ui.widget
+package com.cyrillrx.library.ui.gamelist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

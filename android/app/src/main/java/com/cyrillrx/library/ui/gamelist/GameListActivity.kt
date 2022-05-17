@@ -17,5 +17,7 @@ class GameListActivity : ComponentActivity() {
         setContent {
             GameListScreen(viewModel)
         }
+
+        viewModel.refresh()
     }
 }

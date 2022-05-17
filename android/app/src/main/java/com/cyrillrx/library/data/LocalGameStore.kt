@@ -3,8 +3,8 @@ package com.cyrillrx.library.data
 import com.cyrillrx.library.model.Game
 import kotlin.time.Duration.Companion.minutes
 
-class GameStore {
-    fun get(): List<Game> = GAMES
+class LocalGameStore {
+    fun fetch(): List<Game> = GAMES
 
     companion object {
         private val GAMES = listOf(

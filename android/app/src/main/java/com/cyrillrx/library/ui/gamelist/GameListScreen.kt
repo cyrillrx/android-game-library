@@ -13,10 +13,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import coil.annotation.ExperimentalCoilApi
-import com.cyrillrx.library.data.GameStore
+import com.cyrillrx.library.data.LocalGameStore
 import com.cyrillrx.library.model.Game
 import com.cyrillrx.library.ui.theme.AppTheme
-import com.cyrillrx.library.ui.widget.GameItem
 
 @ExperimentalCoilApi
 @Composable
@@ -86,7 +85,7 @@ fun MainScreenLoadingPreview() {
 @Preview
 @Composable
 fun MainScreenPreview() {
-    val games = GameStore().get()
+    val games = LocalGameStore().fetch()
     val uiState = GameListScreenState(games = games, isLoading = false)
     GameListScreen(uiState)
 }

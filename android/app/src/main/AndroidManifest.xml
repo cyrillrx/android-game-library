@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GameLibrary">
+        android:theme="@style/Theme.GameLibrary"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.gamelist.GameListActivity"
             android:exported="true"
