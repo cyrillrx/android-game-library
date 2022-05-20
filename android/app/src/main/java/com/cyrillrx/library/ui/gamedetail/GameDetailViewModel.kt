@@ -1,4 +1,4 @@
-package com.cyrillrx.library.ui.gamelist
+package com.cyrillrx.library.ui.gamedetail
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -8,17 +8,17 @@ import androidx.lifecycle.viewModelScope
 import com.cyrillrx.library.data.api.GameApi
 import kotlinx.coroutines.launch
 
-class GameListViewModel : ViewModel() {
+class GameDetailViewModel : ViewModel() {
 
-    var uiState by mutableStateOf(GameListScreenState(games = ArrayList(), isLoading = false))
+    var uiState by mutableStateOf(GameDetailScreenState(game = null, isLoading = false))
 
-    fun refresh() {
+    fun refresh(gameId: String) {
         viewModelScope.launch {
             uiState = uiState.copy(isLoading = true)
 
-            val games = GameApi.apiV1.getGames() ?: emptyList()
+            val game = GameApi.apiV1.getGame(gameId)
 
-            uiState = GameListScreenState(games = games, isLoading = false)
+            uiState = GameDetailScreenState(game = game, isLoading = false)
         }
     }
 }

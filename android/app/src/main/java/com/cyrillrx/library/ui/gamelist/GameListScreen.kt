@@ -1,59 +1,51 @@
 package com.cyrillrx.library.ui.gamelist
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import coil.annotation.ExperimentalCoilApi
 import com.cyrillrx.library.data.LocalGameStore
 import com.cyrillrx.library.model.Game
+import com.cyrillrx.library.ui.common.EmptyState
+import com.cyrillrx.library.ui.common.Loader
 import com.cyrillrx.library.ui.theme.AppTheme
 
 @ExperimentalCoilApi
 @Composable
-fun GameListScreen(viewModel: GameListViewModel) {
-    GameListScreen(viewModel.uiState)
+fun GameListScreen(
+    viewModel: GameListViewModel,
+    navigateToGame: (Game) -> Unit,
+) {
+    GameListScreen(viewModel.uiState, navigateToGame)
 }
 
 @ExperimentalCoilApi
 @Composable
-fun GameListScreen(uiState: GameListScreenState) {
+fun GameListScreen(
+    uiState: GameListScreenState,
+    navigateToGame: (Game) -> Unit,
+) {
     AppTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
 
             val games = uiState.games
             when {
                 uiState.isLoading -> Loader()
-                games.isEmpty() -> EmptyState()
-                else -> GameList(games)
+                games.isEmpty() -> EmptyState("No Games")
+                else -> GameList(games, navigateToGame)
             }
         }
     }
 }
 
-@Composable
-private fun Loader() {
-    CircularProgressIndicator(
-        Modifier.wrapContentSize(Alignment.Center)
-    )
-}
-
-@Composable
-private fun EmptyState() {
-    Text(text = "No Games", modifier = Modifier.wrapContentSize(Alignment.Center))
-}
-
 @ExperimentalCoilApi
 @Composable
-private fun GameList(games: List<Game>, modifier: Modifier = Modifier) {
+private fun GameList(games: List<Game>, navigateToGame: (Game) -> Unit, modifier: Modifier = Modifier) {
     LazyColumn(modifier) {
         items(games) { game ->
             val releaseYear = game.releasedAt.split("-").first()
@@ -68,7 +60,7 @@ private fun GameList(games: List<Game>, modifier: Modifier = Modifier) {
                 title = title,
                 subtitle = subtitle,
                 imageUrl = game.imageUrls.firstOrNull(),
-                onItemClicked = { /* TODO */ },
+                onItemClicked = { navigateToGame(game) },
             )
         }
     }
@@ -78,7 +70,7 @@ private fun GameList(games: List<Game>, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenLoadingPreview() {
-    GameListScreen(GameListScreenState(emptyList(), true))
+    GameListScreen(GameListScreenState(emptyList(), true)) {}
 }
 
 @ExperimentalCoilApi
@@ -87,5 +79,5 @@ fun MainScreenLoadingPreview() {
 fun MainScreenPreview() {
     val games = LocalGameStore().fetch()
     val uiState = GameListScreenState(games = games, isLoading = false)
-    GameListScreen(uiState)
+    GameListScreen(uiState) {}
 }

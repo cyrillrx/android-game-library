@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import coil.annotation.ExperimentalCoilApi
+import com.cyrillrx.library.Router.navigateToGame
 
 @ExperimentalCoilApi
 class GameListActivity : ComponentActivity() {
@@ -15,7 +16,7 @@ class GameListActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            GameListScreen(viewModel)
+            GameListScreen(viewModel) { game -> navigateToGame(game.id)}
         }
 
         viewModel.refresh()

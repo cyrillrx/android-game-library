@@ -3,6 +3,7 @@ package com.cyrillrx.library.model
 import kotlin.time.Duration
 
 class Game(
+    val id: String,
     val name: String,
     val description: String,
     val age: Int,

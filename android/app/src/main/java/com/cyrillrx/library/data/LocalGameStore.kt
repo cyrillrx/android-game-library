@@ -9,6 +9,7 @@ class LocalGameStore {
     companion object {
         private val GAMES = listOf(
             Game(
+                id = "1",
                 name = "Oriflamme - Embrasement",
                 description = "La course au trône est lancé ! Le temps n'est plus aux intrigues discrètes, la guerre est ouverte ! Votre famille est plus puissante que jamais et votre but est à portée de main.",
                 age = 10,
@@ -24,6 +25,7 @@ class LocalGameStore {
                 acquiredAt = "2022-03-28",
             ),
             Game(
+                id = "2",
                 name = "7 Wonders : Architects",
                 description = "7 Wonders Architects est un nouveau jeu dans le monde de 7 Wonders. Conçu pour une expérience de jeu fluide et immersive, Architects propose une mécanique légèrement simplifiée, mais qui conserve la profondeur stratégique pour laquelle la marque 7 Wonders est si bien connue.",
                 age = 8,
@@ -39,6 +41,7 @@ class LocalGameStore {
                 acquiredAt = "2022-03-28",
             ),
             Game(
+                id = "3",
                 name = "The Mind - NatureLine",
                 description = "Retrouvez The Mind dans sa version durable. The Mind est plus qu'un simple jeu. C'est une expérience, un voyage, totalement simple et l'expérience d'équipe la plus ingénieuse que vous puissiez vivre.",
                 age = 8,
@@ -54,6 +57,7 @@ class LocalGameStore {
                 acquiredAt = "2022-03-28",
             ),
             Game(
+                id = "4",
                 name = "Happy City",
                 description = "Bâtissez votre ville et mettez-y du cœur ! Cherchez les bonnes tactiques pour gérer vos revenus, faire venir des habitants et les rendre heureux. Créez un petit paradis plus attirant que les villes adverses !",
                 age = 10,
@@ -69,6 +73,7 @@ class LocalGameStore {
                 acquiredAt = "2022-03-28",
             ),
             Game(
+                id = "5",
                 name = "Top Ten",
                 description = "Top Ten est un jeu coopératif innovant et drôle comprenant 500 thèmes variés et délirants qui vous feront inventer, raconter et mimer n’importe quoi !",
                 age = 14,
@@ -84,6 +89,7 @@ class LocalGameStore {
                 acquiredAt = "2022-03-28",
             ),
             Game(
+                id = "6",
                 name = "Codenames",
                 description = "Codenames est un jeu de langage et de déduction dans lequel s'affrontent deux équipes d'espions. À leur tête, deux maîtres de l'espionnage rivaux sont les seuls à connaître les identités secrètes des 25 agents.",
                 age = 12,
