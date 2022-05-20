@@ -8,6 +8,10 @@ import java.time.LocalDateTime
 
 class GameService {
 
+    fun getGameById(id: Int): Game = transaction {
+        GameEntity[id].toGame()
+    }
+
     fun getAllGames(): Iterable<Game> = transaction {
         GameEntity.all().map(GameEntity::toGame)
     }
@@ -35,7 +39,7 @@ class GameService {
         }
     }
 
-    fun deleteBook(gameId: Int) = transaction {
+    fun deleteGame(gameId: Int) = transaction {
         GameEntity[gameId].delete()
     }
 }

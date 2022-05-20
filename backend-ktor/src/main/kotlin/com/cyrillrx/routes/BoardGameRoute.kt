@@ -18,15 +18,20 @@ fun Route.boardGames() {
         call.respond(allGames)
     }
 
+    get("game/{id}") {
+        val gameId = call.parameters["id"]?.toIntOrNull() ?: throw NotFoundException()
+        val game = gameService.getGameById(gameId)
+        call.respond(game)
+    }
+
     post("game") {
         val gameRequest = call.receive<Game>()
         gameService.addGame(gameRequest)
         call.respond(HttpStatusCode.Accepted)
     }
-
     delete("game/{id}") {
-        val bookId = call.parameters["id"]?.toIntOrNull() ?: throw NotFoundException()
-        gameService.deleteBook(bookId)
+        val gameId = call.parameters["id"]?.toIntOrNull() ?: throw NotFoundException()
+        gameService.deleteGame(gameId)
         call.respond(HttpStatusCode.OK)
     }
 }
